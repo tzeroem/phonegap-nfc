@@ -120,10 +120,7 @@
     // construct string to call JavaScript function fireNfcTagEvent(eventType, tagAsJson);
     NSString *function = [NSString stringWithFormat:@"fireNfcTagEvent('ndef', '%@')", ndefMessageAsJSONString];
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([[self webView] isKindOfClass:WKWebView.class])
-          [(WKWebView*)[self webView] evaluateJavaScript:function completionHandler:^(id result, NSError *error) {}];
-        else
-          [(UIWebView*)[self webView] stringByEvaluatingJavaScriptFromString: function];
+        [(WKWebView*)[self webView] evaluateJavaScript:function completionHandler:^(id result, NSError *error) {}];        
     });
 }
 
